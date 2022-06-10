@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="Styles.css">
 </head>
 <body class="w3-content" style="max-width:1200px">
 
@@ -13,66 +14,75 @@
     <i class="w3-xlarge fa fa-bars"></i>
 </div>
 <!-- First Grid: Logo & About -->
-<div class="w3-row">
-    <div class="w3-half w3-container">
-        <img src="Images/Spotify.png" alt="">
+<form name="thisForm" method="get">
+    <div class="w3-row" style="background-color: aliceblue">
+        <div class="w3-half w3-container">
+            <img src="Images/Spotify.png" alt="">
+        </div>
+        <p class=""><h1 style="font-family: 'Book Antiqua',ui-serif"><b>Compare your favorite artists against each other!!</b></h1>
+        <table>
+            <tr>
+                <th colspan="2">Enter two artist ID's to be compared to each other</th>
+            </tr>
+            <tr>
+                <td></td><td><label>
+                <input type="text" size=50% name="FirstArtist" placeholder="First Artist's ID">
+            </label></td>
+                <td></td> <td><label>
+                <input type="text" size=50% name="SecondArtist" placeholder="Second Artist's ID">
+            </label></td>
+                <td><input type="button" value="GO" onclick="" style="background-color: darkgreen"></td>
+            </tr>
+        </table>
+
     </div>
-        <p class=""><h1>Compare your favorite artists against each other!!</h1>
-        <form name="Artists">
-            <table>
-                <tr>
-                    <th colspan="2">Enter two artist ID's to be compared to each other</th>
-                </tr>
-                <tr>
-                    <td></td> <td><label>
-                    <input type="text" size="40" name="FirstArtist" placeholder="First Artist's ID">
-                </label></td>
-                    <td></td> <td><label>
-                    <input type="text" size="40" name="SecondArtist" placeholder="Second Artist's ID">
-                </label></td>
-                </tr>
-            </table>
-        </form>
-</div>
+</form>
 
 <!-- Second Grid: Resent -->
 <div class="w3-panel w3-text-grey">
 </div>
 <div class="w3-row">
-    <div class="w3-half w3-container">
-        <img src="https://i.scdn.co/image/ab6761610000e5eb727a2ac15afe659be999beba" style="width:60%" alt="">
-    </div>
-    <div class="w3-half w3-container">
-        <img src="https://i.scdn.co/image/ab6761610000e5ebd42a27db3286b58553da8858" style="width:60%" alt="">
-    </div>
+    <img src="Images/Artists.jpg" style="width:100%" alt="">
 
 </div>
 
 <!-- Footer -->
 <div class="w3-row w3-section">
     <div class="w3-third w3-container w3-black w3-large" style="height:250px">
-        <h2>Contact Info</h2>
-        <p><i class="fa fa-map-marker" style="width:30px"></i> Chicago, US</p>
-        <p><i class="fa fa-phone" style="width:30px"></i> Phone: +00 151515</p>
-        <p><i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com</p>
+        <h2>ABOUT</h2>
+        <p>Use this service in order to prove to your friends that your musician is the best!!</p>
+
     </div>
     <div class="w3-third w3-center w3-large w3-dark-grey w3-text-white" style="height:250px">
-        <h2>Contact Us</h2>
-        <p>If you have an idea.</p>
-        <p>What are you waiting for?</p>
+        <h4>Contact <a href="mailto: Malik.Mandy98@gmail.com">My Workng Email</a></h4>
+        <p>If you have an idea for improvement.</p>
+        <p>If you wish to learn more about our associated services</p>
+        <p>If you want to get in touch professionally</p>
     </div>
     <div class="w3-third w3-center w3-large w3-grey w3-text-white" style="height:250px">
-        <h2>Like Us</h2>
-        <i class="w3-xlarge fa fa-facebook-official"></i><br>
-        <i class="w3-xlarge fa fa-pinterest-p"></i><br>
-        <i class="w3-xlarge fa fa-twitter"></i><br>
-        <i class="w3-xlarge fa fa-flickr"></i><br>
-        <i class="w3-xlarge fa fa-linkedin"></i>
+        <h2>Find Out More About Me</h2>
+        <a href="https://github.com/Malakai5/">My GitHub Page!</a>
+        <br><br>
+        <a href="https://www.linkedin.com/in/malik-mandy-a25240178/">My LinkedIn Profile</a>
+
     </div>
 </div>
 <div class="w3-container w3-text-grey">
     <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
 </div>
+<script>
+    function getArtists() {
+        var form = document.
+            const userAction = async () => {
+            var initialHTML = "http://localhost:8080/CompareArtists?";
+            initialHTML = initialHTML + "ArtistID1=" + form.ArtistID1.valueOf();
+            const response = await fetch('http://example.com/movies.json');
+            const myJson = await response.json(); //extract JSON from the http response
+            // do something with myJson
+        }
+    }
+</script>
 
 </body>
+
 </html>
