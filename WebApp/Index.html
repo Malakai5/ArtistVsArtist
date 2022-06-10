@@ -54,7 +54,7 @@
 
     </div>
     <div class="w3-third w3-center w3-large w3-dark-grey w3-text-white" style="height:250px">
-        <h4>Contact <a href="mailto: Malik.Mandy98@gmail.com">My Workng Email</a></h4>
+        <h4>Contact <a href="mailto: Malik.Mandy98@gmail.com">My Working Email</a></h4>
         <p>If you have an idea for improvement.</p>
         <p>If you wish to learn more about our associated services</p>
         <p>If you want to get in touch professionally</p>
@@ -72,13 +72,17 @@
 </div>
 <script>
     function getArtists() {
-        var form = document.
+        var form = document.thisForm;
             const userAction = async () => {
             var initialHTML = "http://localhost:8080/CompareArtists?";
-            initialHTML = initialHTML + "ArtistID1=" + form.ArtistID1.valueOf();
-            const response = await fetch('http://example.com/movies.json');
+            initialHTML = initialHTML + "ArtistID1=" + form.FirstArtist.valueOf();
+            initialHTML = initialHTML + "ArtistID2=" + form.SecondArtist.valueOf();
+            const response = await fetch(initialHTML + 'json');
             const myJson = await response.json(); //extract JSON from the http response
             // do something with myJson
+                const txt = '{"name":"Kevin", "age":64, "city":"New York"}'
+                const obj = myJson.parse(txt);
+
         }
     }
 </script>
