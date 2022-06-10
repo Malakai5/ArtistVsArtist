@@ -1,13 +1,12 @@
+import Models.Album;
+import Models.Artist;
+import Models.Track;
 import spotify.api.enums.AlbumType;
 import spotify.api.spotify.SpotifyApi;
 import spotify.models.albums.AlbumFull;
 import spotify.models.albums.AlbumSimplified;
 import spotify.models.artists.ArtistFull;
-import spotify.models.paging.Paging;
 import spotify.models.tracks.TrackFull;
-import spotify.models.tracks.TrackFullCollection;
-
-import javax.sound.midi.Track;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,55 +23,56 @@ public class CompareArtist {
         return spotifyApi.getArtist(artistID);
     }
 
-    public List<TrackFull> getPopularTracks(ArtistFull artist){
+    public List<Track> getPopularTracks(String artistID){
         Map<String, String> optionalParameters = new HashMap<>();
         optionalParameters.put("market", "ES");
-        List<TrackFull> tracks = spotifyApi.getArtistTopTracks(artist.getId(),optionalParameters).getTracks();
-        List<TrackFull> topThreeTracks = new ArrayList<>();
-        topThreeTracks.add(tracks.get(0));
-        topThreeTracks.add(tracks.get(1));
-        topThreeTracks.add(tracks.get(2));
+        List<TrackFull> tracks = spotifyApi.getArtistTopTracks(artistID,optionalParameters).getTracks();
+        List<Track> topThreeTracks = new ArrayList<>();
+        topThreeTracks.add(new Track(tracks.get(0)));
+        topThreeTracks.add(new Track(tracks.get(1)));
+        topThreeTracks.add(new Track(tracks.get(2)));
         return topThreeTracks;
     }
 
 
-    public AlbumFull getMostPopularAlbum(ArtistFull artist){
+    public Album getMostPopularAlbum(String artistID){
         Map<String, String> optionalParameters = new HashMap<>();
         optionalParameters.put("market", "ES");
         optionalParameters.put("limit", "5");
-        List<AlbumFull> correct = new ArrayList<>();
+        List<Album> correct = new ArrayList<>();
         List<AlbumType> albumType = new ArrayList<>();
-
         albumType.add(0,AlbumType.ALBUM);
-        Paging<AlbumSimplified> temp = spotifyApi.getArtistAlbums(artist.getId(), albumType, optionalParameters);
-        List<AlbumSimplified> albums = temp.getItems();
+
+        List<AlbumSimplified> albums = spotifyApi.getArtistAlbums(artistID, albumType, optionalParameters).getItems();
         albums.forEach(album -> {
-            correct.add(spotifyApi.getAlbum(album.getId(), optionalParameters));
+            correct.add(new Album(spotifyApi.getAlbum(album.getId(), optionalParameters)));
         });
 
         return getTopAlbum(correct);
     }
 
 
-    public void compareArtist(String artistID1, String artistID2){
-        ArtistFull firstArtist = getArtist(artistID1);
-        ArtistFull secondArtist = getArtist(artistID2);
-        List<TrackFull> firstArtistSongs = getPopularTracks(firstArtist);
-        List<TrackFull> secondArtistSongs = getPopularTracks(secondArtist);
+    public List<Artist> compareArtist(String artistID1, String artistID2){
+        List<Track> firstArtistSongs = getPopularTracks(artistID1);
+        List<Track> secondArtistSongs = getPopularTracks(artistID2);
+        Artist firstArtist = new Artist(getArtist(artistID1),firstArtistSongs,getMostPopularAlbum(artistID1));
+        Artist secondArtist = new Artist(getArtist(artistID2),secondArtistSongs,getMostPopularAlbum(artistID2));
+        List<Artist> artists = new ArrayList<>();
+        artists.add(firstArtist);
+        artists.add(secondArtist);
         String result = "";
-        String genre = "GENRE:";
 
         result += String.format("%20s%20s","\n" + firstArtist.getName(),secondArtist.getName() + "\n");
         result += "----------------------------------------\n";
         result += String.format("%6s%14s%20s","GENRE:",firstArtist.getGenres(),secondArtist.getGenres() + "\n");
-        result += String.format("%10s%10s%20s","FOLLOWERS:",firstArtist.getFollowers().getTotal(),secondArtist.getFollowers().getTotal() + "\n");
+        result += String.format("%10s%10s%20s","FOLLOWERS:",firstArtist.getFollowers(),secondArtist.getFollowers() + "\n");
         result += String.format("%11s%9s%20s","POPULARITY:",firstArtist.getPopularity(),secondArtist.getPopularity() + "\n\n");
 
 
         result += String.format("%30s", "Most Popular Albums\n");
         result += "----------------------------------------\n\n";
-        result += getMostPopularAlbum(firstArtist).getName() + " " + getMostPopularAlbum(firstArtist).getPopularity() + "\n\n";
-        result += getMostPopularAlbum(secondArtist).getName() + " " + getMostPopularAlbum(secondArtist).getPopularity()+ "\n\n";
+        result += firstArtist.getTopAlbum().getName() + " " + firstArtist.getTopAlbum().getPopularity() + "\n\n";
+        result += secondArtist.getTopAlbum().getName() + " " + secondArtist.getTopAlbum().getPopularity()+ "\n\n";
 
 
         result += "----------------------------------------\n\n";
@@ -83,10 +83,10 @@ public class CompareArtist {
         result += addTopSongs(secondArtistSongs);
 
         System.out.println(result);
-
+        return artists;
     }
 
-    private String addTopSongs(List<TrackFull> tracks){
+    private String addTopSongs(List<Track> tracks){
 
         int count = 0;
         StringBuilder resultBuilder = new StringBuilder();
@@ -97,10 +97,10 @@ public class CompareArtist {
         return resultBuilder.toString();
     }
 
-    private AlbumFull getTopAlbum(List<AlbumFull> albums){
+    private Album getTopAlbum(List<Album> albums){
         int pop = 0;
-        AlbumFull topAlbum = new AlbumFull();
-        for (AlbumFull album : albums) {
+        Album topAlbum = new Album();
+        for (Album album : albums) {
             if (album.getPopularity() > pop) {
                 pop = album.getPopularity();
                 topAlbum = album;
