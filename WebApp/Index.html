@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>W3.CSS Template</title>
     <meta charset="UTF-8">
@@ -19,18 +19,21 @@
         <div class="w3-half w3-container">
             <img src="Images/Spotify.png" alt="">
         </div>
-        <p class=""><h1 style="font-family: 'Book Antiqua',ui-serif"><b>Compare your favorite artists against each other!!</b></h1>
+        <p class="">
+        <h1 style="font-family: 'Book Antiqua',ui-serif"><b>Compare your favorite artists against each other!!</b></h1>
         <table>
             <tr>
                 <th colspan="2">Enter two artist ID's to be compared to each other</th>
             </tr>
             <tr>
-                <td></td><td><label>
-                <input type="text" size=50% name="FirstArtist" placeholder="First Artist's ID">
-            </label></td>
-                <td></td> <td><label>
-                <input type="text" size=50% name="SecondArtist" placeholder="Second Artist's ID">
-            </label></td>
+                <td></td>
+                <td><label>
+                    <input type="text" size=50% name="FirstArtist" placeholder="First Artist's ID">
+                </label></td>
+                <td></td>
+                <td><label>
+                    <input type="text" size=50% name="SecondArtist" placeholder="Second Artist's ID">
+                </label></td>
                 <td><input type="button" value="GO" onclick="" style="background-color: darkgreen"></td>
             </tr>
         </table>
@@ -86,6 +89,8 @@
         }
     }
 </script>
+
+<p th:text="${specimen}"></p>
 
 </body>
 

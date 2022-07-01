@@ -30,7 +30,7 @@ public class RefreshAuth {
                 .getAuthorizationCodeToken(
                         "d4ceff4850ae48979fb290d9925e3376",
                         "0a5689cdcad94340a85138e8e298a992",
-                        "AQDm-QKNENAwdAlLU2CxHIIRWHs7x7vOAUlhGJF26X3Rv90_BlWbusKbYmlQvwodcY5kVV4AqcnJ414RxnHa6ejyVKbI4yGzlARPY0TALyQxjZriIWOnYx5knuqvGjBCbxcd-PQ52HlBIIF6suggC3T4omDh0X6ZgDxzicsH1lRIaCxdRDB7mesWGS1ZLQ",
+                        "AQAstqd3eIwWBzDjdCDKsVMX7xKVFv8uvOqib26XmSBkjjCAZLotRn7g_RBETI0I8Blip08cxH6omcJFxhwVqjndN0weU5hn-eUSJ5YPU0Os0AcAR9E1WRVhBtf0oWam5cFvcW4xFvkRQkQRd8m_Z8o7P9zyjiWMczJc_2FN7jk_AUDYmgfwrffkecsupQ",
                         "http://localhost:8888/");
         return new SpotifyApi(accessToken);
     }

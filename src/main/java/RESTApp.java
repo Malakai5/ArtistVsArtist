@@ -13,6 +13,7 @@ import java.util.List;
 @SpringBootApplication (scanBasePackages = {
         "default"
 })
+
 @RestController
 public class RESTApp {
     public static void main(String[] args) {
