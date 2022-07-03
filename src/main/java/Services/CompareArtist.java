@@ -1,3 +1,5 @@
+package Services;
+
 import Models.Album;
 import Models.Artist;
 import Models.Track;
@@ -12,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CompareArtist {
+public class CompareArtist{
 
     SpotifyApi spotifyApi;
 
@@ -34,7 +36,6 @@ public class CompareArtist {
         return topThreeTracks;
     }
 
-
     public Album getMostPopularAlbum(String artistID){
         Map<String, String> optionalParameters = new HashMap<>();
         optionalParameters.put("market", "ES");
@@ -51,12 +52,11 @@ public class CompareArtist {
         return getTopAlbum(correct);
     }
 
-
     public List<Artist> compareArtist(String artistID1, String artistID2){
         List<Track> firstArtistSongs = getPopularTracks(artistID1);
         List<Track> secondArtistSongs = getPopularTracks(artistID2);
-        Artist firstArtist = new Artist(getArtist(artistID1),firstArtistSongs,getMostPopularAlbum(artistID1));
-        Artist secondArtist = new Artist(getArtist(artistID2),secondArtistSongs,getMostPopularAlbum(artistID2));
+        Artist firstArtist = getArtistInfo(artistID1);
+        Artist secondArtist = getArtistInfo(artistID2);
         List<Artist> artists = new ArrayList<>();
         artists.add(firstArtist);
         artists.add(secondArtist);
@@ -107,6 +107,10 @@ public class CompareArtist {
             }
         }
         return topAlbum;
+    }
+
+    public Artist getArtistInfo(String artistID){
+        return new Artist(getArtist(artistID),getPopularTracks(artistID),getMostPopularAlbum(artistID));
     }
 
 

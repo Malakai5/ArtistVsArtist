@@ -1,3 +1,5 @@
+package Services;
+
 import Models.Artist;
 import spotify.api.enums.QueryType;
 import spotify.api.spotify.SpotifyApi;

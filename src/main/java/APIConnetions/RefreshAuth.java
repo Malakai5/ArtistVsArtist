@@ -1,3 +1,5 @@
+package APIConnetions;
+
 import spotify.api.authorization.AuthorizationCodeFlow;
 import spotify.api.authorization.AuthorizationRequestToken;
 import spotify.api.authorization.ClientCredentialsFlow;
@@ -30,7 +32,7 @@ public class RefreshAuth {
                 .getAuthorizationCodeToken(
                         "d4ceff4850ae48979fb290d9925e3376",
                         "0a5689cdcad94340a85138e8e298a992",
-                        "AQAstqd3eIwWBzDjdCDKsVMX7xKVFv8uvOqib26XmSBkjjCAZLotRn7g_RBETI0I8Blip08cxH6omcJFxhwVqjndN0weU5hn-eUSJ5YPU0Os0AcAR9E1WRVhBtf0oWam5cFvcW4xFvkRQkQRd8m_Z8o7P9zyjiWMczJc_2FN7jk_AUDYmgfwrffkecsupQ",
+                        "AQDUpe0iT2UIYicSSnYVXwmE5nS90AmOfsJFm9RJZv14SjVZ3qSaCti_kOx7W-lAAIntFkseIwSkPgOncZVSylQMhqcVUWWXEEjh_Crt--CiOfF5wwoWv3udpcV7Pe2YuPd58LR4id3ugVh9CHyCTLfTl2o-rZa9nSOhxETMvg9baA5lRRmwP6Kmcn7zMA",
                         "http://localhost:8888/");
         return new SpotifyApi(accessToken);
     }

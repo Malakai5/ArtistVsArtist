@@ -1,9 +1,8 @@
+import APIConnetions.RefreshAuth;
+import Services.Searcher;
 import spotify.api.spotify.SpotifyApi;
-import spotify.models.artists.ArtistFull;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class main {
     public static void main(String[] args) throws IOException {
@@ -21,7 +20,7 @@ public class main {
 //        jayZ.getArtists().forEach(artist ->{
 //            System.out.println(artist.getName() + "\nPopularity:  " + artist.getPopularity() + "\n");
 //        });
-//        CompareArtist comp = new CompareArtist(spotifyApi);
+//        Services.CompareArtist comp = new Services.CompareArtist(spotifyApi);
 //        ArtistFull artist = comp.getArtist("06HL4z0CvFAxyc27GXpf02");
 //        comp.getMostPopularAlbum(artist);
 //        comp.getPopularTracks(artist);
