@@ -25,15 +25,18 @@ public class RefreshAuth {
                         AuthorizationScope.APP_REMOTE_CONTROL,
                         AuthorizationScope.PLAYLIST_MODIFY_PRIVATE))
                 .build();
+
         System.out.println("\n\n");
         System.out.println("CLICK ON THIS LINK: " + authorizationCodeFlow.constructUrl() + " AND COPY THE CODE VALUE INTO LINE 33\n\n");
+
         AuthorizationRequestToken authorizationRequestToken = new AuthorizationRequestToken();
         AuthorizationCodeFlowTokenResponse token = authorizationRequestToken
                 .getAuthorizationCodeToken(
                         "d4ceff4850ae48979fb290d9925e3376",
                         "0a5689cdcad94340a85138e8e298a992",
-                        "AQDUpe0iT2UIYicSSnYVXwmE5nS90AmOfsJFm9RJZv14SjVZ3qSaCti_kOx7W-lAAIntFkseIwSkPgOncZVSylQMhqcVUWWXEEjh_Crt--CiOfF5wwoWv3udpcV7Pe2YuPd58LR4id3ugVh9CHyCTLfTl2o-rZa9nSOhxETMvg9baA5lRRmwP6Kmcn7zMA",
+                        "AQA6tsAh6xY4kzOr7at4w2i0NV9iMmfCbYo_VCnr8g2iXqV3y2FTlA39xvwwUtK5vW9TCUvDAj4wvkbJA_cw-MhxWhiN6sKCGT7ScFOUZo0bbyFZzW88tz3msJ2v9rLnmzrNZR7tN80bBoaCCSz4DLxhxmJVtt6b0xcu9u2aoy1XTjbnltf0wQxxX4jE-A",
                         "http://localhost:8888/");
+
         return new SpotifyApi(accessToken);
     }
 }
