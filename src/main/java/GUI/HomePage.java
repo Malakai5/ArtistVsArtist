@@ -64,14 +64,17 @@ public class HomePage{
     List<ArtistFull>firstCombo = new ArrayList<>();
     List<ArtistFull>secondCombo = new ArrayList<>();
 
+    public JPanel getHomePageView() {
+        return homePageView;
+    }
 
     public HomePage() {
         searchButton1.addActionListener(new SearchButton1Clicked());
         searchButton2.addActionListener(new SearchButton2Clicked());
         compareButton.addActionListener(new CompareButtonClicked());
     }
-
     private class SearchButton1Clicked implements ActionListener{
+
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -103,12 +106,17 @@ public class HomePage{
             Artist first = new Artist();
             Artist second = new Artist();
             for (ArtistFull artist: firstCombo){
-                if (artist.getName().equals(firstArtistList.getSelectedItem()))
+                if (artist.getName().equals(firstArtistList.getSelectedItem())) {
                     first = compareArtist.getArtistInfo(artist.getId());
+                    break;
+                }
+
             }
             for (ArtistFull artist : secondCombo){
-                if (artist.getName().equals(secondArtistList.getSelectedItem()))
+                if (artist.getName().equals(secondArtistList.getSelectedItem())) {
                     second = compareArtist.getArtistInfo(artist.getId());
+                    break;
+                }
             }
             displayArtistPictures(first, second);
             displayArtistStats(first, second);
